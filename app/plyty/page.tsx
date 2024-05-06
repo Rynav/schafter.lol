@@ -1,9 +1,4 @@
 "use client";
-import Card from "@/components/card";
-import CardHeader from "@/components/cardHeader";
-import ImageMosaic from "@/components/imageMosaic";
-import CardFooter from "@/components/cardFooter";
-import Badge from "@/components/badge";
 import {useEffect, useState} from "react";
 
 export default function Home() {
@@ -54,25 +49,7 @@ export default function Home() {
 
                 {discs.map(plyta => {
                     return (
-                        <Card key={plyta._id} href={"/plyty/" + plyta.discSlug} blank={plyta?.discName == "blank"}>
-                            <CardHeader>
-                                {plyta.discName}
-                            </CardHeader>
-                            <div className={"w-72 border border-neutral-700 rounded-2xl overflow-hidden"}>
-                                <img src={plyta.discImage} alt={plyta.discName + " cover"}/>
-                            </div>
-                            <CardFooter>
-                                <div className={"flex flex-row gap-2 col-span-2 mb-2"}>
-                                    {plyta.discBadges.map((discBadge: any, idx: number) => {
-                                        return(
-                                            <Badge key={idx} color={discBadge.color} text={discBadge.emoji + discBadge.title}/>
-                                        )
-                                    })}
-                                </div>
-                                <p>Updated: {plyta.updatedAt}</p>
-                                <p className={"text-right"}>{plyta.updatedBy}</p>
-                            </CardFooter>
-                        </Card>
+                        <a href={plyta.discSlug != "blank"?"/plyty/"+plyta.discSlug: "https://discord.gg/rPJh4aZpPE" } className={"flex items-center duration-100 hover:scale-110"}><img src={plyta.discSlug != "blank"? plyta.discImage: "/logo.gif"} width={256} height={256}/></a>
                     )
                 })}
             </div>
